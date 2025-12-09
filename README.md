@@ -1,84 +1,84 @@
-# HelpDeskPro - Sistema de Gestión de Tickets
+# HelpDeskPro - Ticket Management System
 
-Sistema web desarrollado con Next.js, TypeScript y MongoDB para la gestión eficiente de tickets de soporte técnico.
+A web system built with Next.js, TypeScript, and MongoDB for efficient management of technical support tickets.
 
-## Descripción
+## Description
 
 HelpDeskPro es una aplicación que centraliza la gestión de tickets de soporte, permitiendo a los clientes crear y dar seguimiento a sus solicitudes, mientras que los agentes pueden gestionar, responder y resolver tickets de manera organizada.
 
-## Funcionalidades Principales
+## Main Features
 
-- **Autenticación con Roles**: Login diferenciado para clientes y agentes
-- **Gestión de Tickets**: Crear, editar, actualizar estado y cerrar tickets
-- **Sistema de Comentarios**: Hilo de conversación en cada ticket
-- **Notificaciones por Email**: Alertas automáticas para eventos importantes
-- **Dashboard de Agente**: Vista completa con filtros por estado
-- **Dashboard de Cliente**: Vista personalizada de tickets propios
-- **Componentes Reutilizables**: Button, Badge y Card tipados con TypeScript
+- **Role-Based Authentication:**: Separate login for clients and agents
+- **Ticket Management:** Create, edit, update status, and close tickets
+- **Comment System:** Conversation thread on every ticket
+- **Email Notifications:** Automatic alerts for important events
+- **Agent Dashboard:** Full view with filters by status
+- **Client Dashboard:** Personalized view of own tickets
+- **Reusable Components:**: Button, Badge, and Card typed with TypeScript
 
-## Tecnologías Utilizadas
+## Technologies Used
 
 - **Frontend**: React, Next.js 14 (App Router), TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes
-- **Base de Datos**: MongoDB con Mongoose
-- **Autenticación**: Context API + bcryptjs
+- **Database**: MongoDB con Mongoose
+- **Authentication**: Context API + bcryptjs
 - **HTTP Client**: Axios
 - **Email**: Nodemailer
 
-## Requisitos Previos
+## Prerequisites
 
 - Node.js 18+ 
-- MongoDB instalado localmente o conexión a MongoDB Atlas
-- Cuenta de Gmail para envío de correos (con contraseña de aplicación)
+- MongoDB installed locally or connection to MongoDB Atlas
+- Gmail account for sending emails (with app password)
 
-## Instalación y Configuración
+## Installation and Setup
 
-### 1. Clonar el repositorio
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/yezid-jr/HelpDeskPro-Ticket-Management-System.git
 cd helpdesk-pro
 ```
 
-### 2. Instalar dependencias
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Configurar variables de entorno
+### 3. Configure environment variables
 
-Crear archivo `.env.local` en la raíz del proyecto:
+Create a `.env.local` file in the project root:
 
 ```env
 MONGODB_URI=mongodb://localhost:27017/helpdesk
-EMAIL_USER=tu_email@gmail.com
-EMAIL_PASS=tu_app_password_de_gmail
+EMAIL_USER=example@gmail.com
+EMAIL_PASS=tu_password_of_gmail
 ```
 
-**Nota**: Para obtener la contraseña de aplicación de Gmail:
-1. Ve a tu cuenta de Google
-2. Seguridad → Verificación en dos pasos
-3. Contraseñas de aplicaciones
-4. Genera una nueva contraseña para "Mail"
+**Note**: To obtain the Gmail app password:
+1. Go to your Google Account
+2. Security → Two-Step Verification
+3. App Passwords
+4. Generate a new password for "Mail"
 
-### 4. Iniciar MongoDB
+### 4. Start MongoDB
 
-Si usas MongoDB local:
+If you are using local MongoDB:
 
 ```bash
-mongod
+mongosh
 ```
 
-### 5. Crear usuarios de prueba
+### 5. Create test users
 
-Conectarse a MongoDB y ejecutar:
+Connect to MongoDB and run:
 
 ```javascript
 use helpdesk
 
 // Hash de "password123"
-const hashedPassword = "$2a$10$rXGkxJpqN4ZG.jQv8F5jC.XXXXXXXXXXXXXXXXXXXXXXXXXXX"
+const hashedPassword = "$2b$10$K1FwGiAXaKLKJZW8Xg1xZ.NAeBsa4HFzaGwGZR2AkBbP0iMJpy4Yq"
 
 db.users.insertMany([
   {
@@ -98,7 +98,7 @@ db.users.insertMany([
 ])
 ```
 
-**Importante**: Debes hashear la contraseña usando bcrypt. Puedes usar este script:
+**Important**: You must hash the password using bcrypt. You can use this script:
 
 ```javascript
 const bcrypt = require('bcryptjs');
@@ -106,39 +106,39 @@ const hash = bcrypt.hashSync('password123', 10);
 console.log(hash);
 ```
 
-### 6. Ejecutar el proyecto
+### 6. Run the project
 
 ```bash
 npm run dev
 ```
 
-Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
+Open [http://localhost:3000](http://localhost:3000) in the browser
 
-## Usuarios de Prueba
+## Test Users
 
-- **Cliente**: 
+- **Client**: 
   - Email: `client@test.com`
-  - Contraseña: `password123`
+  - Password: `password123`
 
-- **Agente**: 
+- **Agent**: 
   - Email: `agent@test.com`
-  - Contraseña: `password123`
+  - Password: `password123`
 
-## Capturas de Pantalla
+## Screenshots
 
 ### Login
 ![Login](./screenshots/login.png)
 
-### Panel de Cliente - Crear Ticket
+### Client Panel - Create Ticket
 ![Cliente Dashboard](./screenshots/client-create.png)
 
-### Panel de Agente - Gestión de Tickets
+### Agent Panel - Ticket Management
 ![Agente Dashboard](./screenshots/agent-dashboard.png)
 
-### Vista de Detalle con Comentarios
+### Detail View with Comments
 ![Ticket Detail](./screenshots/ticket-detail.png)
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 helpdesk-pro/
@@ -173,101 +173,73 @@ helpdesk-pro/
 └── README.md
 ```
 
-## Roles y Permisos
+## Roles and Permissions
 
-### Cliente
-- Ver solo sus propios tickets
-- Crear nuevos tickets
-- Agregar comentarios a sus tickets
-- Ver respuestas de agentes
+### Client
+- View only their own tickets
+- Create new tickets
+- Add comments to their tickets
+- View agent responses
 
-### Agente
-- Ver todos los tickets del sistema
-- Filtrar tickets por estado
-- Cambiar estado de tickets
-- Asignar prioridad
-- Responder con comentarios
-- Cerrar tickets
+### Agent
+- View all system tickets
+- Filter tickets by status
+- Change ticket status
+- Assign priority
+- Respond with comments
+- Close tickets
 
-## Sistema de Notificaciones
+## Notification System
+The system sends automatic emails for the following events:
+**Ticket Created:** Sent to the client when a ticket is created
+**New Response:** Sent to the client when an agent comments
+**Ticket Closed:** Sent to the client when their ticket is closed
 
-El sistema envía correos automáticos en los siguientes eventos:
-
-1. **Ticket Creado**: Al cliente cuando crea un ticket
-2. **Nueva Respuesta**: Al cliente cuando un agente comenta
-3. **Ticket Cerrado**: Al cliente cuando se cierra su ticket
-
-## Validaciones Implementadas
-
-- Campos obligatorios en formularios
-- Autenticación requerida para todas las operaciones
-- Validación de roles antes de acciones sensibles
-- Manejo de errores con try/catch
-- Mensajes claros de éxito/error al usuario
+## Implemented Validations
+- Required fields in forms
+- Authentication required for all operations
+- Role validation before sensitive actions
+- Error handling with try/catch
+- Clear success/error messages to the user
 
 ## Testing
 
-Para probar la aplicación:
+To test the application:
+1. Log in as client
+2. Create a ticket with title and description
+3. Verify email reception
+4. Log out and log in as agent
+5. View the created ticket
+6. Add a comment
+7. Change the ticket status
+8. Verify that the client receives emails
 
-1. Iniciar sesión como **cliente**
-2. Crear un ticket con título y descripción
-3. Verificar recepción de email
-4. Cerrar sesión e iniciar como **agente**
-5. Ver el ticket creado
-6. Agregar un comentario
-7. Cambiar el estado del ticket
-8. Verificar que el cliente recibe emails
 
-## Notas de Desarrollo
+## Developer Information
 
-- La aplicación usa localStorage para persistir la sesión
-- Los emails se envían de forma asíncrona sin bloquear la respuesta
-- MongoDB debe estar corriendo antes de iniciar la app
-- Las contraseñas se hashean con bcrypt antes de guardarlas
-
-## Mejoras Futuras (No Implementadas)
-
-- Cron jobs para recordatorios automáticos
-- Encuestas post-cierre
-- Asignación automática de agentes
-- Búsqueda avanzada de tickets
-- Exportación de reportes
-- Adjuntar archivos a tickets
-
-## Datos del Desarrollador
-
-- **Nombre**: [TU NOMBRE COMPLETO]
-- **Clan**: [TU CLAN]
-- **Correo**: [tu_correo@email.com]
-- **Documento**: [TU DOCUMENTO DE IDENTIDAD]
+- **Name**: Yezid Castro
+- **Email**: castrogil202@gmail.com
 
 ---
 
-## Scripts Disponibles
+## Troubleshooting
 
-```bash
-npm run dev          # Inicia el servidor de desarrollo
-npm run build        # Construye la aplicación para producción
-npm run start        # Inicia el servidor de producción
-npm run lint         # Ejecuta el linter
+### MongoDB connection error
+```
+Check that MongoDB is running
+Verify the URL in MONGODB_URI
+
 ```
 
-## Solución de Problemas
+### Email sending error
+```
+Verify Gmail credentials
+Ensure you’re using an app password
+Check that EMAIL_USER and EMAIL_PASS are configured
 
-### Error de conexión a MongoDB
-```
-Verificar que MongoDB esté corriendo
-Revisar la URL en MONGODB_URI
-```
-
-### Error al enviar emails
-```
-Verificar credenciales de Gmail
-Asegurarse de usar contraseña de aplicación
-Verificar que EMAIL_USER y EMAIL_PASS estén configurados
 ```
 
-### Error "Module not found"
+### "Module not found" error
 ```bash
 rm -rf node_modules package-lock.json
 npm install
