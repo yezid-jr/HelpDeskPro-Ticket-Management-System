@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
 
     if (!ticketId) {
       return NextResponse.json(
-        { error: 'ID de ticket requerido' },
+        { error: 'Ticket ID is required' },
         { status: 400 }
       );
     }
@@ -24,9 +24,9 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ comments });
   } catch (error) {
-    console.error('Error obteniendo comentarios:', error);
+    console.error('Error fetching comments:', error);
     return NextResponse.json(
-      { error: 'Error obteniendo comentarios' },
+      { error: 'Error fetching comments' },
       { status: 500 }
     );
   }
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 
     if (!ticketId || !author || !message) {
       return NextResponse.json(
-        { error: 'Todos los campos son requeridos' },
+        { error: 'All fields are required' },
         { status: 400 }
       );
     }
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     const populatedComment = await Comment.findById(comment._id)
       .populate('author', 'name role');
 
-    // Enviar email al cliente si el comentario es de un agente
+    // Send email to the client if the comment is from an agent
     const authorUser = await User.findById(author);
     if (authorUser && authorUser.role === 'agent') {
       const ticket = await Ticket.findById(ticketId).populate('createdBy', 'email');
@@ -65,9 +65,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ comment: populatedComment }, { status: 201 });
   } catch (error) {
-    console.error('Error creando comentario:', error);
+    console.error('Error creating comment:', error);
     return NextResponse.json(
-      { error: 'Error creando comentario' },
+      { error: 'Error creating comment' },
       { status: 500 }
     );
   }

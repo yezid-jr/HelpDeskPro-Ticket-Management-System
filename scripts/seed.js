@@ -1,14 +1,11 @@
-// Script para crear usuarios de prueba
-// Ejecutar con: node scripts/seed.js
-
 const bcrypt = require('bcryptjs');
 
 async function generateUsers() {
   const password = 'password123';
   const hashedPassword = await bcrypt.hash(password, 10);
   
-  console.log('Hash generado:', hashedPassword);
-  console.log('\nCopia este código en MongoDB Shell:\n');
+  console.log('Hash:', hashedPassword);
+  console.log('\nCopi this code in MongoDB Shell:\n');
   console.log(`
 use helpdesk
 

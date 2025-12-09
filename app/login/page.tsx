@@ -41,9 +41,12 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
+        <h1 className="text-3xl font-extrabold mb-6 text-center 
+               bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent
+               tracking-tight drop-shadow-sm">
           HelpDeskPro
         </h1>
+
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Login
         </h2>
@@ -63,7 +66,8 @@ export default function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 pr-12 rounded-xl border border-gray-200 shadow-sm 
+               focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all"
               required
             />
           </div>
@@ -76,7 +80,8 @@ export default function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 pr-12 rounded-xl border border-gray-200 shadow-sm 
+               focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all"
               required
             />
           </div>

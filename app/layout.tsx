@@ -6,8 +6,8 @@ import { AuthProvider } from '@/context/AuthContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'HelpDeskPro - Sistema de Tickets',
-  description: 'Sistema de gestión de tickets de soporte',
+  title: 'HelpDeskPro - Ticket System',
+  description: 'Support ticket management system',
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
           {children}

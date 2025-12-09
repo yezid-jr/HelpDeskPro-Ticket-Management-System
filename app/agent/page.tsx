@@ -38,7 +38,7 @@ export default function AgentPage() {
       const response = await axios.get(`/api/tickets?role=agent&status=${statusFilter}`);
       setTickets(response.data.tickets);
     } catch (error) {
-      console.error('Error cargando tickets:', error);
+      console.error('Error loading tickets:', error);
     }
   };
 
@@ -53,31 +53,31 @@ export default function AgentPage() {
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">Panel de Agente</h1>
-            <p className="text-gray-600">Bienvenido, {user.name}</p>
+            <h1 className="text-3xl font-bold text-gray-800">Agent Dashboard</h1>
+            <p className="text-gray-600">Welcome, {user.name}</p>
           </div>
           <Button onClick={logout} variant="secondary">
-            Cerrar Sesión
+            Log Out
           </Button>
         </div>
 
         <div className="mb-6 flex gap-4 items-center">
-          <label className="text-sm font-medium text-gray-700">Filtrar por estado:</label>
+          <label className="text-sm font-medium text-gray-700">Filter by status:</label>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="px-3 py-2 border border-gray-300 rounded-lg"
           >
-            <option value="all">Todos</option>
-            <option value="open">Abiertos</option>
-            <option value="in_progress">En Progreso</option>
-            <option value="resolved">Resueltos</option>
-            <option value="closed">Cerrados</option>
+            <option value="all">All</option>
+            <option value="open">Open</option>
+            <option value="in_progress">In Progress</option>
+            <option value="resolved">Resolved</option>
+            <option value="closed">Closed</option>
           </select>
         </div>
 
         <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-          Todos los Tickets ({tickets.length})
+          All Tickets ({tickets.length})
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -95,7 +95,7 @@ export default function AgentPage() {
 
         {tickets.length === 0 && (
           <p className="text-gray-500 text-center py-8">
-            No hay tickets con el filtro seleccionado
+            There are no tickets with the selected filter
           </p>
         )}
       </div>

@@ -56,7 +56,7 @@ export default function TicketDetailPage() {
       setTicket(response.data.tickets[0]);
       setNewStatus(response.data.tickets[0].status);
     } catch (error) {
-      console.error('Error cargando ticket:', error);
+      console.error('Error loading ticket:', error);
     }
   };
 
@@ -65,7 +65,7 @@ export default function TicketDetailPage() {
       const response = await axios.get(`/api/comments?ticketId=${params.id}`);
       setComments(response.data.comments);
     } catch (error) {
-      console.error('Error cargando comentarios:', error);
+      console.error('Error loading comments:', error);
     }
   };
 
@@ -81,11 +81,11 @@ export default function TicketDetailPage() {
         message: newComment
       });
 
-      setMessage('Comentario agregado');
+      setMessage('Comment added');
       setNewComment('');
       fetchComments();
     } catch (error) {
-      setMessage('Error al agregar comentario');
+      setMessage('Error adding comment');
     } finally {
       setLoading(false);
     }
@@ -101,22 +101,22 @@ export default function TicketDetailPage() {
         status: newStatus
       });
 
-      setMessage('Estado actualizado');
+      setMessage('Status updated');
       fetchTicket();
     } catch (error) {
-      setMessage('Error al actualizar estado');
+      setMessage('Error updating status');
     } finally {
       setLoading(false);
     }
   };
 
-  if (!ticket || !user) return <div className="p-8">Cargando...</div>;
+  if (!ticket || !user) return <div className="p-8">Loading...</div>;
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-4xl mx-auto">
         <Button onClick={() => router.back()} variant="secondary">
-          ← Volver
+          ← Back
         </Button>
 
         {message && (
@@ -137,14 +137,14 @@ export default function TicketDetailPage() {
           <p className="text-gray-600 mb-4">{ticket.description}</p>
 
           <div className="text-sm text-gray-500 mb-4">
-            <p>Creado por: {ticket.createdBy.name}</p>
-            <p>Fecha: {new Date(ticket.createdAt).toLocaleString()}</p>
+            <p>Created by: {ticket.createdBy.name}</p>
+            <p>Date: {new Date(ticket.createdAt).toLocaleString()}</p>
           </div>
 
           {user.role === 'agent' && (
             <div className="border-t pt-4 mt-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Cambiar Estado
+                Change Status
               </label>
               <div className="flex gap-2">
                 <select
@@ -152,13 +152,13 @@ export default function TicketDetailPage() {
                   onChange={(e) => setNewStatus(e.target.value)}
                   className="px-3 py-2 border border-gray-300 rounded-lg"
                 >
-                  <option value="open">Abierto</option>
-                  <option value="in_progress">En Progreso</option>
-                  <option value="resolved">Resuelto</option>
-                  <option value="closed">Cerrado</option>
+                  <option value="open">Open</option>
+                  <option value="in_progress">In Progress</option>
+                  <option value="resolved">Resolved</option>
+                  <option value="closed">Closed</option>
                 </select>
                 <Button onClick={handleUpdateStatus} disabled={loading}>
-                  Actualizar
+                  Update
                 </Button>
               </div>
             </div>
@@ -166,7 +166,7 @@ export default function TicketDetailPage() {
         </div>
 
         <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-          <h2 className="text-xl font-semibold mb-4">Comentarios</h2>
+          <h2 className="text-xl font-semibold mb-4">Comments</h2>
 
           <div className="space-y-4 mb-6">
             {comments.map((comment) => (
@@ -185,12 +185,12 @@ export default function TicketDetailPage() {
           </div>
 
           {comments.length === 0 && (
-            <p className="text-gray-500 mb-6">No hay comentarios aún</p>
+            <p className="text-gray-500 mb-6">No comments yet</p>
           )}
 
           <form onSubmit={handleAddComment}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Agregar Comentario
+              Add Comment
             </label>
             <textarea
               value={newComment}
@@ -200,7 +200,7 @@ export default function TicketDetailPage() {
               required
             />
             <Button type="submit" disabled={loading}>
-              {loading ? 'Enviando...' : 'Enviar Comentario'}
+              {loading ? 'Sending...' : 'Submit Comment'}
             </Button>
           </form>
         </div>

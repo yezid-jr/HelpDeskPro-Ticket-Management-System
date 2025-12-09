@@ -29,9 +29,9 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ tickets });
   } catch (error) {
-    console.error('Error obteniendo tickets:', error);
+    console.error('Error fetching tickets:', error);
     return NextResponse.json(
-      { error: 'Error obteniendo tickets' },
+      { error: 'Error fetching tickets' },
       { status: 500 }
     );
   }
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
 
     if (!title || !description || !createdBy) {
       return NextResponse.json(
-        { error: 'Título, descripción y usuario son requeridos' },
+        { error: 'Title, description, and user are required' },
         { status: 400 }
       );
     }
@@ -64,9 +64,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ticket }, { status: 201 });
   } catch (error) {
-    console.error('Error creando ticket:', error);
+    console.error('Error creating ticket:', error);
     return NextResponse.json(
-      { error: 'Error creando ticket' },
+      { error: 'Error creating ticket' },
       { status: 500 }
     );
   }
@@ -79,7 +79,7 @@ export async function PATCH(req: NextRequest) {
 
     if (!ticketId) {
       return NextResponse.json(
-        { error: 'ID de ticket requerido' },
+        { error: 'Ticket ID is required' },
         { status: 400 }
       );
     }
@@ -105,9 +105,9 @@ export async function PATCH(req: NextRequest) {
 
     return NextResponse.json({ ticket });
   } catch (error) {
-    console.error('Error actualizando ticket:', error);
+    console.error('Error updating ticket:', error);
     return NextResponse.json(
-      { error: 'Error actualizando ticket' },
+      { error: 'Error updating ticket' },
       { status: 500 }
     );
   }

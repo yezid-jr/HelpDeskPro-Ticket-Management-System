@@ -73,6 +73,7 @@ mongosh
 ### 5. Create test users
 
 Connect to MongoDB and run:
+**run:** node scripts/seed.js
 
 ```javascript
 use helpdesk
@@ -130,13 +131,13 @@ Open [http://localhost:3000](http://localhost:3000) in the browser
 ![Login](./screenshots/login.png)
 
 ### Client Panel - Create Ticket
-![Cliente Dashboard](./screenshots/client-create.png)
+![Cliente Dashboard](./public/screenshots/client-dash.png)
 
 ### Agent Panel - Ticket Management
-![Agente Dashboard](./screenshots/agent-dashboard.png)
+![Agente Dashboard](./public/screenshots/agent-dash.png)
 
 ### Detail View with Comments
-![Ticket Detail](./screenshots/ticket-detail.png)
+![Ticket Detail](./public/screenshots/details-comment.png)
 
 ## Project Structure
 
