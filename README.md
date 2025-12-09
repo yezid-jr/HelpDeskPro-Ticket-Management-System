@@ -128,7 +128,7 @@ Open [http://localhost:3000](http://localhost:3000) in the browser
 ## Screenshots
 
 ### Login
-![Login](./screenshots/login.png)
+![Login](.public/screenshots/login.png)
 
 ### Client Panel - Create Ticket
 ![Cliente Dashboard](./public/screenshots/client-dash.png)
